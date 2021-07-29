@@ -8,13 +8,20 @@ const app = express();
 // });
 app.get("/",(req, res)=>{
     res.send("this is home page");
-})
+});
+
 app.get('/cats',(req,res)=>{
     res.send("cat response");
+});
+
+app.get("/:subreddit",(req,res)=>{
+    const { subreddit } = req.params;
+    res.send(`<h1>browsing the ${subreddit}</h1>`);
 })
 
-app.get("/dogs",(req,res)=>{
-    res.send('woof');
+app.get("/:subreddit/:postId",(req,res)=>{
+    const { subreddit, postId } = req.params;
+    res.send(`<h1>${postId} browsing the ${subreddit}</h1>`);
 })
 
 app.get("*", (req,res)=>{
